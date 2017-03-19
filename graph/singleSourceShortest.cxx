@@ -51,7 +51,9 @@ void singleSourceShortest(Graph const &g, int s,                  /* in */
   // find vertex in ever-shrinking set, V-S, whose dist[] is smallest.
   // Recompute potential new paths to update all shortest paths
   while (!pq.isEmpty()) {
+    output(n,dist,pred);
     int u = pq.smallest();
+    cout << "pick the vertice with smallest distance: " << u << "\n";
 
     // For neighbors of u, see if newLen (best path from s->u + weight
     // of edge u->v) is better than best path from s->v. If so, update
@@ -60,12 +62,16 @@ void singleSourceShortest(Graph const &g, int s,                  /* in */
     for (VertexList::const_iterator ci = g.begin(u); ci != g.end(u); ++ci) {
       int v = ci->first;
       long newLen = dist[u];
+      cout << "v = " << v << ", dist[" << u << "] = " << newLen;
       newLen += ci->second;
+      cout << ", newLen = " << newLen << "\n";
       if (newLen < dist[v]) {
         pq.decreaseKey (v, newLen);
         dist[v] = newLen;
+        cout << "update dist[" << v << "] = " << newLen << "\n"; 
         pred[v] = u;
       }
     }
+    cout << "vertice " << u << " done\n\n";
   }
 }

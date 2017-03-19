@@ -10,6 +10,7 @@
 #include <stdio.h>
 #include <cassert>
 #include <iostream>
+#include <iomanip>
 
 #include "Graph.h"
 #include "dfs.h"
@@ -28,8 +29,7 @@ void output(vector<int> &pred, vector<int> &d, vector<int> &f) {
 
 /** My example to use in Chapter 6 */
 int main (int argc, char **argv) {
-  int n = 16;
-  int i,j;
+  int i,j,n;
   Graph g (0);
 
   if (argc == 1) {
@@ -52,9 +52,14 @@ int main (int argc, char **argv) {
         bfsSearch (g, 0, dist, pred);
     }
      
-    for (j = 0; j < n; j++) {
-      cout << j << ": " << pred[j] << "\n";
+    for (int i = 0; i < n; i++) {
+      cout << setw(2) << i << "| ";
     }
+    cout << "\n";
+    for (int i = 0; i < n; i++) {
+      cout << setw(2) << pred[i] << "| ";
+    }
+    cout << "\n\n";
   }
 }
 

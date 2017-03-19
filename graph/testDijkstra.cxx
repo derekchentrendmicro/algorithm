@@ -8,7 +8,9 @@
  */
 
 #include <cassert>
+#include <iomanip>
 #include <iostream>
+#include <stdlib.h>
 
 #include "Graph.h"
 #include "singleSourceShortest.h"
@@ -26,31 +28,39 @@ void output(vector<int> &pred, vector<int> &d, vector<int> &f) {
 
 /** My example to use in Chapter 6 */
 int main (int argc, char **argv) {
-  int n = 6;
-  int i;
-  Graph g (n,true);
+  int i,s = 0;
 
-  g.addEdge (0, 1,  6);
-  g.addEdge (0, 2,  8);
-  g.addEdge (0, 3, 18);
-  g.addEdge (1, 4, 11);
-  g.addEdge (2, 3,  9);
-  g.addEdge (4, 5,  3);
-  g.addEdge (5, 2,  7);
-  g.addEdge (5, 3,  4);
+  if (argc == 1) {
+    cout << "usage: " << argv[0] << " <graph.dat>\n";
+    return(-1);
+  }else if (argc > 2){
+    s = atoi(argv[2]);
+  }
+
+  Graph  g (0);
+
+  g.load (argv[1]);
+  int n = g.numVertices();
+  cout << "loaded graph with " << n << "vertices\n";
 
   vector<int> pred(g.numVertices());
   vector<int> dist(g.numVertices());
 
-  singleSourceShortest (g, 0, dist, pred);
+  singleSourceShortest (g, s, dist, pred);
 
+  cout << "start from " << s << "\n     ";
   for (i = 0; i < n; i++) {
-    cout << i << ": " << pred[i] << "\n";
+      cout << setw(2) << i << "| ";
   }
+  cout << "\npred ";
   for (i = 0; i < n; i++) {
-    cout << i << ": " << dist[i] << "\n";
+      cout << setw(2) << pred[i] << "| ";
   }
-  cout << "Passed test\n";
+  cout << "\ndist ";
+  for (i = 0; i < n; i++) {
+      cout << setw(2) << dist[i] << "| ";
+  }
+  cout << "\n";
 
 }
 
