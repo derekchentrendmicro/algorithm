@@ -8,6 +8,7 @@
  */
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <cassert>
 #include <iostream>
 #include <iomanip>
@@ -29,12 +30,14 @@ void output(vector<int> &pred, vector<int> &d, vector<int> &f) {
 
 /** My example to use in Chapter 6 */
 int main (int argc, char **argv) {
-  int i,j,n;
+  int i,j,n,s;
   Graph g (0);
 
   if (argc == 1) {
       printf ("usage: %s <graph>\n",argv[0]);
+      return 0;
   } else {
+      s = (argc > 2)? atoi(argv[2]) : 0;
       g.load(argv[1]);
       n =  g.numVertices();
       printf ("loaded graph with %d vertices\n", n);
@@ -46,16 +49,17 @@ int main (int argc, char **argv) {
 
     if (i==0){
         cout << "==== DFS ====\n";
-        dfsSearch (g, 0, pred);
+        dfsSearch (g, s, pred);
     }else {
         cout << "==== BFS ====\n";
-        bfsSearch (g, 0, dist, pred);
+        bfsSearch (g, s, dist, pred);
     }
-     
-    for (int i = 0; i < n; i++) {
+
+    cout << "\n     ";
+     for (int i = 0; i < n; i++) {
       cout << setw(2) << i << "| ";
     }
-    cout << "\n";
+    cout << "\npred ";
     for (int i = 0; i < n; i++) {
       cout << setw(2) << pred[i] << "| ";
     }

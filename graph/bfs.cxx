@@ -7,6 +7,7 @@
  * @date 6/15/08
  */
 
+#include <iomanip>
 #include <iostream>
 #include "bfs.h"
 
@@ -32,7 +33,7 @@ void bfsSearch (Graph const &graph, int s,             /* in */
   while (!q.empty()) {
     int u = q.front();
 
-    cout << "pop " << u << "\n";
+    cout << setw(2) << u << " - \n";
     // Explore neighbors of u to expand the search horizon
     for (VertexList::const_iterator ci = graph.begin(u);
 	    ci != graph.end(u); ++ci) {
@@ -41,6 +42,7 @@ void bfsSearch (Graph const &graph, int s,             /* in */
 	        dist[v] = dist[u]+1;
 	        pred[v] = u;
 	        color[v] = Gray;
+          cout << "    |- " << v << "\n";
 	        q.push(v);
       }
     }

@@ -21,7 +21,6 @@ void dfsVisit (Graph const &graph, int u,                  /* in */
          vector<int> &pred, vector<vertexColor> &color) {  /* out */
   color[u] = Gray;
 
-  cout << "visit " << u << "\n";
   // process all neighbors of u.
   for (VertexList::const_iterator ci = graph.begin(u);
        ci != graph.end(u); ++ci) {
@@ -31,6 +30,7 @@ void dfsVisit (Graph const &graph, int u,                  /* in */
     // Once recursive call ends, backtrack to adjacent vertices.
     if (color[v] == White) {
       pred[v] = u;
+      cout << u << " -> " << v << "\n";
       dfsVisit (graph, v, pred, color);
     }
   }

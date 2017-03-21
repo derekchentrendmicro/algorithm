@@ -62,15 +62,17 @@ void singleSourceShortest(Graph const &g, int s,                  /* in */
     for (VertexList::const_iterator ci = g.begin(u); ci != g.end(u); ++ci) {
       int v = ci->first;
       long newLen = dist[u];
-      cout << "v = " << v << ", dist[" << u << "] = " << newLen;
+      cout << "s->" << u << " (" << newLen << ") + " << u << "->" << v << " (" << ci->second << ") = ";
       newLen += ci->second;
-      cout << ", newLen = " << newLen << "\n";
+      cout << newLen;
       if (newLen < dist[v]) {
         pq.decreaseKey (v, newLen);
         dist[v] = newLen;
-        cout << "update dist[" << v << "] = " << newLen << "\n"; 
+        cout << " < dist[" << v << "] (" << dist[v] << "). Update.\n"; 
         pred[v] = u;
-      }
+      }else
+        cout << " >= dist[" << v << "] (" << dist[v] << "). Keep.\n"; 
+
     }
     cout << "vertice " << u << " done\n\n";
   }
