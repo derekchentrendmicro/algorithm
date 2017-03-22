@@ -13,7 +13,7 @@ BellmanFord:
 	g++ -g -o testBellmanFord testDijkstra.cxx  Graph.cxx bellmanFord.cxx
 
 FloydWarshall: 
-	g++ -g -o testFloydWarshall testFloydWarshall.c  Graph.cxx allPairsShortest.cxx
+	g++ -g -o testFloydWarshall testFloydWarshall.c  Graph.cxx allPairsShortestFloyd.cxx
 
 Prim: 
 	g++ -g -o testPrim testPrim.cxx  Graph.cxx Prim.cxx BinaryHeap.cxx
