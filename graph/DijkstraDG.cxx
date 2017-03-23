@@ -10,6 +10,7 @@
  */
 
 #include <cstdio>
+ #include <iostream>
 
 #include "Graph.h"
 
@@ -47,29 +48,35 @@ void singleSourceShortest(Graph const &graph, int s,              /* in */
   // find vertex in ever-shrinking set, V-S, whose dist value is smallest
   // Recompute potential new paths to update all shortest paths
   while (true) {
+    outputDense(n,dist,pred);
     // find shortest distance so far in unvisited vertices
     int u = -1;
     int sd = numeric_limits<int>::max();   // assume not reachable
     for (int i = 0; i < n; i++) {
       if (!visited[i] && dist[i] < sd) {
-	sd = dist[i];
-	u = i;
+	        sd = dist[i];
+	        u = i;
       }
     }
     if (u == -1) { break; }    // no more progress to be made
+    cout << "pick the vertex with smallest distance: " << u << "\n";
 
     // For neighbors of u, see if length of best path from s->u + weight
     // of edge u->v is better than best path from s->v.
     visited[u] = true;
-    for (VertexList::const_iterator ci = graph.begin(u);
-	 ci != graph.end(u); ++ci) {
+    for (VertexList::const_iterator ci = graph.begin(u); ci != graph.end(u); ++ci) {
       int v = ci->first;                   // the neighbor v
       long newLen = dist[u];               // compute as long
+      cout << "s->" << u << " (" << newLen << ") + " << u << "->" << v << " (" << ci->second << ") = ";
       newLen += ci->second;                // sum with (u,v) weight
+      cout << newLen;
       if (newLen < dist[v]) {
-	dist[v] = newLen; 
-	pred[v] = u;
-      }
+	        dist[v] = newLen; 
+	        cout << " < dist[" << v << "] (" << dist[v] << "). Update.\n"; 
+          pred[v] = u;
+      }else
+        cout << " >= dist[" << v << "] (" << dist[v] << "). Keep.\n"; 
     }
+    cout << "vertex " << u << " done\n\n";
   }
 }

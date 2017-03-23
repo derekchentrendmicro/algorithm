@@ -15,7 +15,7 @@
 
 int main (int argc, char **argv) {
   if (argc == 1) {
-    cout << "usage: ./testGraph <graph.dat> [<source> <target>]\n";
+    cout << "usage: " << argv[0] << " <graph.dat> [<source> <target>]\n";
     exit (-1);
   }
 
@@ -23,19 +23,41 @@ int main (int argc, char **argv) {
 
   graph.load (argv[1]);
   int n = graph.numVertices();
-  cout << "loaded graph with " << n << "vertices\n";
+  cout << "loaded graph with " << n << " vertices\n";
 
   vector< vector<int> > dist(n, vector<int>(n));
   vector< vector<int> > pred(n, vector<int>(n));
 
   allPairsShortest(graph, dist, pred);
 
-  // if multiple arguments, use.
+  int i,j;
+
+  // output matrix
+  cout << "==== dist ====\n";
+  cout << "  ";
+  for (j = 0; j < n; j++) {
+    cout << setw(2) << j << " ";
+  }
+  cout << "\n";
+  for (i = 0; i < n; i++) {
+    cout << setw(2) << i;
+    for (j = 0; j < n; j++) {
+      cout << setw(2) << dist[i][j] << " ";
+    }
+    cout << "\n";
+  }
+  cout << "\n==== pred ====\n";
+  for (i = 0; i < n; i++) {
+    for (j = 0; j < n; j++) {
+      cout << setw(2) << pred[i][j] << " ";
+    }
+    cout << "\n";
+  }
   if (argc > 2) {
     int src = atoi(argv[2]);
     int tgt = atoi(argv[3]);
 
-    cout << "Shortest path from " << src << " to " << tgt << " is " << 
+    cout << "\nShortest path from " << src << " to " << tgt << " is " << 
       dist[src][tgt] << "\n";
 
     list<int> path(0);
@@ -45,24 +67,5 @@ int main (int argc, char **argv) {
       cout << *ci << " ";
     }
     cout << "\n";
-  } else {
-    int i,j;
-
-    // output matrix
-    cout << "==== dist ====\n";
-    for (i = 0; i < n; i++) {
-      for (j = 0; j < n; j++) {
-        cout << setw(2) << dist[i][j] << " ";
-      }
-      cout << "\n";
-    }
-    cout << "==== pred ====\n";
-    for (i = 0; i < n; i++) {
-      for (j = 0; j < n; j++) {
-        cout << setw(2) << pred[i][j] << " ";
-      }
-      cout << "\n";
-    }
   }
-
 }
