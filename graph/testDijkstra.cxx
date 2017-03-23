@@ -41,14 +41,14 @@ int main (int argc, char **argv) {
 
   g.load (argv[1]);
   int n = g.numVertices();
-  cout << "loaded graph with " << n << "vertices\n";
+  cout << "loaded graph with " << n << " vertices\n";
 
   vector<int> pred(g.numVertices());
   vector<int> dist(g.numVertices());
 
   singleSourceShortest (g, s, dist, pred);
 
-  cout << "start from " << s << "\n     ";
+  cout << s << "->  ";
   for (i = 0; i < n; i++) {
       cout << setw(2) << i << "| ";
   }

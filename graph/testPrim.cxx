@@ -16,7 +16,7 @@
 int main (int argc, char **argv) {
 
   if (argc == 1) {
-    cout << "usage: ./testGraph <graph.dat> [<source> <target>]\n";
+    cout << "usage: " << argv[0] << " <graph.dat>\n";
     return(-1);
   }
 
@@ -24,7 +24,7 @@ int main (int argc, char **argv) {
 
   graph.load (argv[1]);
   int n = graph.numVertices();
-  cout << "loaded graph with " << n << "vertices\n";
+  cout << "loaded graph with " << n << " vertices\n";
 
   vector<int> pred(n);
 

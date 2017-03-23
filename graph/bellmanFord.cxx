@@ -22,7 +22,7 @@ void output (int n,
   for (int i = 0; i < n; i++) {
     printf ("%d ", pred[i]);
   }
-  printf ("\n");
+  printf ("\n\n");
 }
 
 /**
@@ -52,6 +52,7 @@ void singleSourceShortest(Graph const &graph, int s,              /* in */
     bool failOnUpdate = (i == n);
     bool leaveEarly = true;
 
+    output(n,dist,pred);
     // Process each vertex, u, and its respective edges to see if 
     // some edge (u,v) realizes a shorter distance from s->v by going
     // through s->u->v. Use longs to prevent overflow.
