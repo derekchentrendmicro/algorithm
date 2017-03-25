@@ -52,8 +52,7 @@ void allPairsShortest(Graph const &graph,             /* in */
     dist[u].assign(n, numeric_limits<int>::max());
     pred[u].assign(n, -1);
     dist[u][u] = 0;
-    for (VertexList::const_iterator ci = graph.begin(u);
-	 ci != graph.end(u); ++ci) {
+    for (VertexList::const_iterator ci = graph.begin(u);ci != graph.end(u); ++ci) {
       int v = ci->first;
       dist[u][v] = ci->second;
       pred[u][v] = u;
@@ -68,14 +67,18 @@ void allPairsShortest(Graph const &graph,             /* in */
         for (int j = 0; j < n; j++) {
                 //add by myself
                 if (dist[k][j] == numeric_limits<int>::max() || i == k || j == k || i == j) { continue; }
-                cout << "compare " << i << "," << j << " with " << i << "," << k << "," << j << endl;
+                cout << "compare " << i << "," << j << " (" << dist[i][j] <<") with "
+                                   << i << "," << k << " (" << dist[i][k] << ") + " 
+                                   << k << "," << j << " (" << dist[k][j] << ").";
                 long newLen = dist[i][k];
                 newLen += dist[k][j];
 
                 if (newLen < dist[i][j]) {
                   dist[i][j] = newLen;
                   pred[i][j] = pred[k][j];
-          }
+                  cout << " Update to " << dist[i][j] << endl;
+                }else
+                  cout << " Keep\n";
         }
     }
   }

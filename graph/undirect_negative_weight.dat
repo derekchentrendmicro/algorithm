@@ -1,0 +1,8 @@
+Vertices Edges
+4 3 undirected
+0,1,7
+1,2,3
+1,3,-3
+####
+undirected graph with negative weight means a loop which is against bellman-ford. that's why it does not work. this will work for directed graph.
+http://stackoverflow.com/questions/14785413/can-we-apply-bellman-ford-algorithm-to-undirected-graph

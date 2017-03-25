@@ -3,16 +3,16 @@ all: BfsDfs DijkstraPQ DijkstraDG BellmanFord FloydWarshall Prim
 BfsDfs:
 	g++ -g -o testBfsDfs testBfsDfs.cxx dfs.cxx bfs.cxx Graph.cxx
 
-DijkstraPQ: 
+PQ: 
 	g++ -g -o testDijkstraPQ testDijkstra.cxx Graph.cxx DijkstraPQ.cxx BinaryHeap.cxx
 
-DijkstraDG: 
+DG: 
 	g++ -g -o testDijkstraDG testDijkstra.cxx Graph.cxx DijkstraDG.cxx
 
-BellmanFord: 
+Bellman: 
 	g++ -g -o testBellmanFord testDijkstra.cxx Graph.cxx bellmanFord.cxx
 
-FloydWarshall: 
+Floyd: 
 	g++ -g -o testFloydWarshall testFloydWarshall.c Graph.cxx allPairsShortestFloyd.cxx
 
 Prim: 

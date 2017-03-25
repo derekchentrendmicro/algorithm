@@ -33,21 +33,25 @@ int main (int argc, char **argv) {
   int i,j;
 
   // output matrix
-  cout << "==== dist ====\n";
-  cout << "  ";
+  cout << "==== dist ====\n   ";
   for (j = 0; j < n; j++) {
     cout << setw(2) << j << " ";
   }
   cout << "\n";
   for (i = 0; i < n; i++) {
-    cout << setw(2) << i;
+    cout << setw(2) << i << " ";
     for (j = 0; j < n; j++) {
       cout << setw(2) << dist[i][j] << " ";
     }
     cout << "\n";
   }
-  cout << "\n==== pred ====\n";
+  cout << "\n==== pred ====\n   ";
+  for (j = 0; j < n; j++) {
+    cout << setw(2) << j << " ";
+  }
+  cout << "\n";
   for (i = 0; i < n; i++) {
+    cout << setw(2) << i << " ";
     for (j = 0; j < n; j++) {
       cout << setw(2) << pred[i][j] << " ";
     }
