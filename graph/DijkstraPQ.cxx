@@ -53,7 +53,7 @@ void singleSourceShortest(Graph const &g, int s,                  /* in */
   while (!pq.isEmpty()) {
     output(n,dist,pred);
     int u = pq.smallest();
-    cout << "pick the vertice with smallest distance: " << u << "\n";
+    cout << "pick the vertex with smallest distance: " << u << "\n";
 
     // For neighbors of u, see if newLen (best path from s->u + weight
     // of edge u->v) is better than best path from s->v. If so, update
@@ -67,13 +67,13 @@ void singleSourceShortest(Graph const &g, int s,                  /* in */
       cout << newLen;
       if (newLen < dist[v]) {
         pq.decreaseKey (v, newLen);
-        dist[v] = newLen;
         cout << " < dist[" << v << "] (" << dist[v] << "). Update.\n"; 
+        dist[v] = newLen;
         pred[v] = u;
       }else
         cout << " >= dist[" << v << "] (" << dist[v] << "). Keep.\n"; 
 
     }
-    cout << "vertice " << u << " done\n\n";
+    cout << "vertex " << u << " done\n\n";
   }
 }

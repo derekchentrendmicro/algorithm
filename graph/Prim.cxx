@@ -51,7 +51,7 @@ void mst_prim (Graph const &graph, vector<int> &pred) {
     // Process all neighbors of u to find if any edge beats best distance
     for (VertexList::const_iterator ci = graph.begin(u);ci != graph.end(u); ++ci) {
       int v = ci->first;
-      if (true/*inQueue[v]*/) {
+      if (inQueue[v]) {
 	      int w = ci->second;
 	      if (w < key[v]) {
 	        pred[v] = u;

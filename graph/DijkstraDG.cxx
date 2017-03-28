@@ -71,9 +71,9 @@ void singleSourceShortest(Graph const &graph, int s,              /* in */
       newLen += ci->second;                // sum with (u,v) weight
       cout << newLen;
       if (newLen < dist[v]) {
-	        dist[v] = newLen; 
-	        cout << " < dist[" << v << "] (" << dist[v] << "). Update.\n"; 
-          pred[v] = u;
+        cout << " < dist[" << v << "] (" << dist[v] << "). Update.\n"; 
+	dist[v] = newLen; 
+        pred[v] = u;
       }else
         cout << " >= dist[" << v << "] (" << dist[v] << "). Keep.\n"; 
     }

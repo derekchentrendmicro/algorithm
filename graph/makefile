@@ -1,4 +1,4 @@
-all: BfsDfs DijkstraPQ DijkstraDG BellmanFord FloydWarshall Prim
+all: BfsDfs PQ DG Bellman Floyd Prim
 
 BfsDfs:
 	g++ -g -o testBfsDfs testBfsDfs.cxx dfs.cxx bfs.cxx Graph.cxx
